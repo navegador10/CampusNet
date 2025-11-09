@@ -77,6 +77,8 @@ Pedro  → [Lucía] (siguiendo 1)
 Sofía  → [Ana, Andrés, Lucía] (siguiendo 3)
 ```
 
+![Lista de adyacencia](docs/evidencia/lista-adyacencia.png)
+
 ### BFS (orden y cantidad)
 
 ```text
@@ -93,6 +95,8 @@ Sofía -> Ana -> Lucía -> Andrés -> Luis -> Carlos -> Laura -> Mario -> Diana 
 Total visitados: 10
 ```
 
+![BFS desde Ana](docs/evidencia/bfs-ana.png)
+
 ### DFS completo y ciclo
 
 ```text
@@ -102,6 +106,8 @@ Recorrido DFS completo:
 Ana -> Luis -> Sofía -> Lucía -> Andrés -> Mario -> Diana -> Pedro -> Carlos -> Laura -> Jorge -> Marta -> 
 Total visitados (DFS): 12
 ```
+
+![DFS completo](docs/evidencia/dfs-completo.png)
 
 ### Consultas sociales
 
@@ -166,6 +172,10 @@ Actualizado rol de U1 a Administrador.
 Usuarios con rol Administrador:
 - Ana (Administrador)
 ```
+
+![CRUD 1](docs/evidencia/crud.png)
+![CRUD 2](docs/evidencia/crud1.png)
+![CRUD 3](docs/evidencia/crud2.png)
 
 ### Capturas de pantalla (opcional)
 
