@@ -10,11 +10,31 @@ namespace CampusNet.View
         public void ShowAdjacencyList(Graph g)
         {
             Console.WriteLine("\n=== LISTA DE ADYACENCIA ===");
-            foreach (var kvp in g.AdjacencyList)
+            if (g.Vertices.Count == 0)
             {
-                string from = g.Vertices[kvp.Key].Name;
-                string toList = string.Join(", ", kvp.Value.Select(id => g.Vertices[id].Name));
-                Console.WriteLine($"{from} → [{toList}]");
+                Console.WriteLine("(vacío)");
+                return;
+            }
+
+            int nameWidth = g.Vertices.Values.Max(v => v.Name.Length);
+
+            var orderedKeys = g.AdjacencyList
+                .Keys
+                .OrderBy(id => g.Vertices.ContainsKey(id) ? g.Vertices[id].Name : id)
+                .ToList();
+
+            foreach (var key in orderedKeys)
+            {
+                string from = g.Vertices.ContainsKey(key) ? g.Vertices[key].Name : key;
+                var neighbors = g.AdjacencyList.TryGetValue(key, out var list) ? list : new List<string>();
+                var toNames = neighbors
+                    .Where(id => g.Vertices.ContainsKey(id))
+                    .Select(id => g.Vertices[id].Name)
+                    .OrderBy(n => n)
+                    .ToList();
+
+                string toList = string.Join(", ", toNames);
+                Console.WriteLine($"{from.PadRight(nameWidth)} → [" + toList + $"] (siguiendo {toNames.Count})");
             }
         }
 
@@ -47,7 +67,7 @@ namespace CampusNet.View
         public void ShowUsersList(string title, IEnumerable<Vertex> users)
         {
             Console.WriteLine($"\n{title}:");
-            foreach (var v in users)
+            foreach (var v in users.OrderBy(u => u.Name))
                 Console.WriteLine($"- {v}");
         }
 
