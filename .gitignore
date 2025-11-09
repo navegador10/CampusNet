@@ -1,0 +1,34 @@
+# Build artifacts
+bin/
+obj/
+
+# Visual Studio / VS Code
+.vs/
+.vscode/
+
+# User-specific files
+*.user
+*.suo
+*.userprefs
+
+# Dotnet artifacts
+*.ide/
+*.pidb
+*.svclog
+*.pdb
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# NuGet
+*.nupkg
+.packages/
+.nuget/
+
+# Rider
+.idea/
+*.sln.iml
