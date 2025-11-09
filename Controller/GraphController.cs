@@ -19,12 +19,21 @@ namespace CampusNet.Controller
 
         public void Run()
         {
+            view.ShowMessage("=== Controller: Orquestación de casos de uso ===");
             CrearUsuarios();
             CrearRelaciones();
+            MostrarResumen();
             view.ShowAdjacencyList(graph);
             EjecutarRecorridos();
             ConsultasSociales();
             OperacionesCRUD();
+        }
+
+        private void MostrarResumen()
+        {
+            int totalUsuarios = graph.Vertices.Count;
+            int totalRelaciones = graph.AdjacencyList.Values.Sum(l => l.Count);
+            view.ShowMessage($"Usuarios: {totalUsuarios} | Relaciones: {totalRelaciones}");
         }
 
         private void CrearUsuarios()
