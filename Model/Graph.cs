@@ -152,6 +152,34 @@ namespace CampusNet.Model
             return BFS(from).Contains(to);
         }
 
+        // MÉTRICAS DEL MODELO
+        public int EdgeCount()
+        {
+            return AdjacencyList.Values.Sum(l => l.Count);
+        }
+
+        public double AverageOutDegree()
+        {
+            if (Vertices.Count == 0) return 0.0;
+            return AdjacencyList.Values.Average(l => l.Count);
+        }
+
+        public double AverageInDegree()
+        {
+            if (Vertices.Count == 0) return 0.0;
+            var inDeg = BuildInDegreeMap();
+            return inDeg.Values.Average();
+        }
+
+        private Dictionary<string,int> BuildInDegreeMap()
+        {
+            var inDegree = Vertices.ToDictionary(v => v.Key, v => 0);
+            foreach (var list in AdjacencyList.Values)
+                foreach (var to in list)
+                    if (inDegree.ContainsKey(to)) inDegree[to]++;
+            return inDegree;
+        }
+
         // Retorna el orden de descubrimiento de un DFS desde un inicio específico
         public List<string> DFSOrderFrom(string start)
         {
